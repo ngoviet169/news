@@ -15,4 +15,16 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::resource('news', 'NewsController');
+Route::get('news/{id}', 'PagesController@show');
+
+Route::get('login', 'Auth\LoginController@login')->name('login');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('login', 'Auth\LoginController@login');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', 'Backend\NewsController@index')->name('admin');
+
+    Route::resource('news', 'Backend\NewsController');
+
+    Route::resource('cate', 'Backend\CateController');
+});

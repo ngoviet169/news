@@ -128,34 +128,6 @@
                                     diam eget turpis varius</a></div>
                         </div>
                     </li>
-                    <li>
-                        <div class="media"><a class="media-left" href="#"><img src="images/70x70.jpg"
-                                                                               alt=""></a>
-                            <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada
-                                    diam eget turpis varius</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media"><a class="media-left" href="#"><img src="images/70x70.jpg"
-                                                                               alt=""></a>
-                            <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada
-                                    diam eget turpis varius</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media"><a class="media-left" href="#"><img src="images/70x70.jpg"
-                                                                               alt=""></a>
-                            <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada
-                                    diam eget turpis varius</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media"><a class="media-left" href="#"><img src="images/70x70.jpg"
-                                                                               alt=""></a>
-                            <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada
-                                    diam eget turpis varius</a></div>
-                        </div>
-                    </li>
                 </ul>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="recentComent">
