@@ -17,6 +17,11 @@ class News extends Model
         return $this->belongsTo('App\Category', 'cate_id');
     }
 
+    /**
+     * add new News
+     * @param $arrParams
+     * @return $this|Model
+     */
     public function createNews($arrParams)
     {
         return $this->create($arrParams);

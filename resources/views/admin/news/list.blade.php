@@ -7,12 +7,14 @@
                     <h1 class="page-header">Product
                         <small>List</small>
                     </h1>
+                    @if (isset($success))
+                        <div class="alert alert-success">
+                            <ul>
+                                <li>{{ $success }}</li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
-                @if (isset($success))
-                    <div class="alert alert-success">
-                        <li>{{ $success }}</li>
-                    </div>
-                @endif
                 <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>

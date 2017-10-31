@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class CateController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.category.list');
     }
 
     /**
@@ -24,7 +25,7 @@ class CateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.form');
     }
 
     /**
@@ -35,7 +36,21 @@ class CateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:category,name'
+        ]);
+
+        $input = $request->only('name');
+        $cate = new Category();
+        $status = $cate->createCate($input);
+        $success = 'Add Category successfully !';
+
+        if (!$status) {
+            $fail = 'Sorry, somethings went wrong :(';
+            return view('admin.category.form')->with(compact('fail'));
+        }
+
+        return view('admin.category.list')->with(compact('success'));
     }
 
     /**
