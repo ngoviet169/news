@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.news.form');
     }
 
     /**
@@ -35,7 +36,25 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'cate_id' => 'required',
+            'title' => 'required|unique:news,title',
+            'description' => 'required|min:50|max:200',
+            'tags' => 'required',
+            'content' => 'required'
+        ]);
+
+        $new = new News();
+        $input = $request->only('cate_id', 'title', 'description', 'tags', 'content', 'is_public');
+        $status = $new->createNews($input);
+        $success = 'Add News successfully !';
+
+        if (!$status) {
+            $fail = 'Sorry, somethings went wrong :(';
+            return view('admin.news.form')->with(compact('fail'));
+        }
+
+        return view('admin.news.list')->with(compact('success'));
     }
 
     /**
