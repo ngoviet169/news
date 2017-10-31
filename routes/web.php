@@ -27,4 +27,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('news', 'Backend\NewsController');
 
     Route::resource('cate', 'Backend\CateController');
+    Route::post('cate/{cate}', 'Backend\CateController@update')->name('updateCate');
 });

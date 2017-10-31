@@ -34,7 +34,7 @@
                                 <td>{{$cate->created_at}}</td>
                                 <td>{{$cate->updated_at}}</td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('cate.edit', $cate->id)}}">Edit</a></td>
                             </tr>
                         @endforeach
                     @endif
