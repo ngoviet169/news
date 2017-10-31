@@ -8,6 +8,11 @@
                         <small>List</small>
                     </h1>
                 </div>
+                @if (isset($success))
+                    <div class="alert alert-success">
+                        <li>{{ $success }}</li>
+                    </div>
+                @endif
                 <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
