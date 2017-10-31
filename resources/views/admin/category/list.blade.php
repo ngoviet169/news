@@ -4,9 +4,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Product
+                    <h1 class="page-header">Category
                         <small>List</small>
                     </h1>
+                    @if (isset($success))
+                        <div class="alert alert-success">
+                            <ul>
+                                <li>{{ $success }}</li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
