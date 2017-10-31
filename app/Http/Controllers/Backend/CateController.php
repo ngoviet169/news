@@ -15,7 +15,9 @@ class CateController extends Controller
      */
     public function index()
     {
-        return view('admin.category.list');
+        $cates = Category::all();
+
+        return view('admin.category.list')->with(compact('cates'));
     }
 
     /**
@@ -50,7 +52,7 @@ class CateController extends Controller
             return view('admin.category.form')->with(compact('fail'));
         }
 
-        return view('admin.category.list')->with(compact('success'));
+        return redirect()->route('cate.index')->with('noti', 'Add Category successfully !');
     }
 
     /**
