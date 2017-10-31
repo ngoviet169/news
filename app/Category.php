@@ -19,4 +19,9 @@ class Category extends Model
     {
         return $this->create($params);
     }
+
+    public function updateCate($id, $params)
+    {
+        return $this->where('id', $id)->update($params);
+    }
 }

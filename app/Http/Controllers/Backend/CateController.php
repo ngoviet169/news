@@ -45,7 +45,6 @@ class CateController extends Controller
         $input = $request->only('name');
         $cate = new Category();
         $status = $cate->createCate($input);
-        $success = 'Add Category successfully !';
 
         if (!$status) {
             $fail = 'Sorry, somethings went wrong :(';
@@ -74,7 +73,9 @@ class CateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cateDetail = Category::find($id);
+
+        return view('admin.category.form')->with(compact('cateDetail'));
     }
 
     /**
@@ -86,7 +87,20 @@ class CateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:category,name'
+        ]);
+
+        $cate = new Category();
+        $input = $request->only('name');
+        $status = $cate->updateCate($id, $input);
+
+        if (!$status) {
+            $fail = 'Sorry, somethings went wrong :(';
+            return redirect()->route('cate.edit', $id)->with('danger', 'Sorry, somethings went wrong :(');
+        }
+
+        return redirect()->route('cate.index')->with('noti', 'Update Category successfully !');
     }
 
     /**
