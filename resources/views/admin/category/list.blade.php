@@ -12,6 +12,11 @@
                             {{session('noti')}}
                         </div>
                     @endif
+                    @if(session('danger'))
+                        <div class="alert alert-danger">
+                            {{session('danger')}}
+                        </div>
+                    @endif
                 </div>
                 <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -33,7 +38,7 @@
                                 <td>{{$cate->name}}</td>
                                 <td>{{$cate->created_at}}</td>
                                 <td>{{$cate->updated_at}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('deleteCate', $cate->id)}}" onclick="return confirm('Are you wanna delete this item?')"> Delete</a></td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('cate.edit', $cate->id)}}">Edit</a></td>
                             </tr>
                         @endforeach

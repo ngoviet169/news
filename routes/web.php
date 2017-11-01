@@ -28,4 +28,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('cate', 'Backend\CateController');
     Route::post('cate/{cate}', 'Backend\CateController@update')->name('updateCate');
+    Route::get('cage/{cate}', 'Backend\CateController@destroy')->name('deleteCate');
 });
