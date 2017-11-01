@@ -44,7 +44,7 @@ class CateController extends Controller
 
         $input = $request->only('name');
         $cate = new Category();
-        $status = $cate->createCate($input);
+        $status = $cate->create($input);
 
         if (!$status) {
             $fail = 'Sorry, somethings went wrong :(';
@@ -91,12 +91,11 @@ class CateController extends Controller
             'name' => 'required|unique:category,name'
         ]);
 
-        $cate = new Category();
+        $cate = Category::find($id);
         $input = $request->only('name');
-        $status = $cate->updateCate($id, $input);
+        $status = $cate->update($input);
 
         if (!$status) {
-            $fail = 'Sorry, somethings went wrong :(';
             return redirect()->route('cate.edit', $id)->with('danger', 'Sorry, somethings went wrong :(');
         }
 
@@ -111,6 +110,13 @@ class CateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cate = Category::find($id);
+        $status = $cate->delete();
+
+        if (!$status) {
+            return redirect()->route('cate.index', $id)->with('danger', 'Sorry, somethings went wrong :(');
+        }
+
+        return redirect()->route('cate.index')->with('noti', 'Delete Category successfully !');
     }
 }
