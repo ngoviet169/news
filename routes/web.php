@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'Backend\NewsController@index')->name('admin');
 
     Route::resource('news', 'Backend\NewsController');
+    Route::get('changeStatus/{id}', 'Backend\NewsController@changeStatus')->name('changeStatus');
 
     Route::resource('cate', 'Backend\CateController');
     Route::post('cate/{cate}', 'Backend\CateController@update')->name('updateCate');

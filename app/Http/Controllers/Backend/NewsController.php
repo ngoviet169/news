@@ -16,7 +16,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.list');
+        $new = new News();
+        $news = $new->getAllNews();
+
+        return view('admin.news.list')->with(compact('news'));
     }
 
     /**
@@ -51,14 +54,13 @@ class NewsController extends Controller
         $input = $request->only('cate_id', 'title', 'description', 'tags', 'content', 'is_public');
         $input['title_alias'] = $this->changeTitle($input['title']);
         $status = $new->create($input);
-        $success = 'Add News successfully !';
 
         if (!$status) {
             $fail = 'Sorry, somethings went wrong :(';
             return view('admin.news.form')->with(compact('fail'));
         }
 
-        return view('admin.news.list')->with(compact('success'));
+        return redirect()->route('news.index')->with('noti', 'Add News successfully !');
     }
 
     /**
@@ -104,6 +106,20 @@ class NewsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changeStatus($id)
+    {
+        $new = News::find($id);
+        if($new->is_public == 1) {
+            $status = 'Private';
+            $new ->update(['is_public' => 0]);
+        } else {
+            $status = 'Public';
+            $new ->update(['is_public' => 1]);
+        }
+
+        return redirect()->route('news.index')->with('noti', 'This news is '. $status . '!');
     }
 
     public function changeTitle($str,$strSymbol='-',$case=MB_CASE_LOWER){// MB_CASE_UPPER / MB_CASE_TITLE / MB_CASE_LOWER

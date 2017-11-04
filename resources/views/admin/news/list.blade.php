@@ -14,39 +14,49 @@
                             </ul>
                         </div>
                     @endif
+                    @if(session('noti'))
+                        <div class="alert alert-success">
+                            {{session('noti')}}
+                        </div>
+                    @endif
                 </div>
                 <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr align="center">
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Title</th>
+                        <th>Title Alias</th>
+                        <th>Tags</th>
+                        <th>Description</th>
+                        <th>Content</th>
                         <th>Status</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>Áo Thun Nana</td>
-                        <td>200.000 VNĐ</td>
-                        <td>3 Minutes Age</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>Áo Thun Polo</td>
-                        <td>250.000 VNĐ</td>
-                        <td>1 Hours Age</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @if (isset($news))
+                        @foreach($news as $new)
+                            <tr class="odd gradeX" align="center">
+                                <td>{{$new->id}}</td>
+                                <td>{{$new->category->name}}</td>
+                                <td>{{$new->title}}</td>
+                                <td>{{$new->title_alias}}</td>
+                                <td>{{$new->tags}}</td>
+                                <td>{{$new->description}}</td>
+                                <td>{{$new->content}}</td>
+                                <td><a href="{{route('changeStatus', $new->id)}}">{{$new->is_public == 1 ? 'Public' : 'Private' }}</a></td>
+                                <td>{{$new->created_at}}</td>
+                                <td>{{$new->updated_at}}</td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

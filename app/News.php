@@ -16,4 +16,11 @@ class News extends Model
     {
         return $this->belongsTo('App\Category', 'cate_id');
     }
+
+    public function getAllNews()
+    {
+        $query = $this->with('category');
+
+        return $query->get();
+    }
 }
