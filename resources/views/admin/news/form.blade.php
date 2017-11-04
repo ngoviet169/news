@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label>Category Parent</label>
                             <select name="cate_id" class="form-control">
-                                <option value="0">Please Choose Category</option>
+                                <option value="">Please Choose Category</option>
                                 @if(isset($cates))
                                     @foreach($cates as $cate)
                                         <option value="{{$cate->id}}">{{$cate->name}}</option>
