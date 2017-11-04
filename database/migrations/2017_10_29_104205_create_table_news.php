@@ -17,6 +17,7 @@ class CreateTableNews extends Migration
             $table->increments('id');
             $table->integer('cate_id');
             $table->string('title');
+            $table->string('title_alias')->nullable();
             $table->string('tags');
             $table->string('description');
             $table->string('content');
