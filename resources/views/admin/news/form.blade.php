@@ -25,7 +25,11 @@
                             <label>Category Parent</label>
                             <select name="cate_id" class="form-control">
                                 <option value="0">Please Choose Category</option>
-                                <option value="1">Tin Tức</option>
+                                @if(isset($cates))
+                                    @foreach($cates as $cate)
+                                        <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <div class="form-group">
